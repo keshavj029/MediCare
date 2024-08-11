@@ -45,13 +45,21 @@ async def consult(data: SymptomData):
     health_template = PromptTemplate(
         input_variables=['chat_history', 'symptoms'],
         template="""
-        Using the context from memory {chat_history}, analyze the following symptoms:
-        
+        You are a helpful and friendly health chatbot. Based on the user's input:
 
-        Symptoms: {symptoms}
+Input: {symptoms}
 
-        Provide an analysis of the symptoms and describe if they indicate any serious health issues that require consulting a doctor. Also, suggest any possible home remedies if applicable.
-        If the symptoms are too strong then ask them to consult a doctor like for eye problem, Robin Kahn, contact - 8646530986, Sam Keatings, contact -0098643209 for cold and so on.
+1. If the input is a casual greeting like "Hey," "Hi," "Hello," or similar, respond warmly and ask how they are doing.
+
+2. If the input is irrelevant or outside the scope of health-related queries, politely inform the user that you are unable to answer those questions.
+
+3. If the input describes health symptoms, provide a thorough analysis. Mention if the symptoms could indicate any serious health issues that may require consulting a doctor. Suggest possible home remedies if applicable.
+
+4. If the symptoms are severe, recommend consulting a doctor. For example:
+   - For eye problems: Robin Kahn, contact - 8646530986
+   - For cold and headache: Sam Keatings, contact - 0098643209
+
+Respond directly to the user with only the content of your response.
         """
     )
 
